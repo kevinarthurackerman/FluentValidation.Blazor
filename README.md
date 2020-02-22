@@ -6,7 +6,7 @@ Add FluentValidation to your Blazor forms
 Create and register validators for your form model
 
 Tag your form to add validation messages
-```csharp
+```
 <EditForm Model="User" OnValidSubmit="OnValidSubmit">
     <FluentValidationValidator />
     <FormBlock>
