@@ -1,0 +1,39 @@
+﻿@page "/"
+
+<h1>Test</h1>
+
+<div class="col-md-4">
+    <EditForm Model="@User" OnValidSubmit="OnValidSubmit">
+        <FluentValidationValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label>First Name</label>
+            <InputText @bind-Value="User.FirstName" class="form-control" />
+            <ValidationMessage For="() => User.FirstName" />
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <InputText @bind-Value="User.LastName" class="form-control" />
+            <ValidationMessage For="() => User.LastName" />
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </EditForm>
+</div>
+<div class="col-md-4">
+    <button @onclick="OnChangeModelClicked">Change Model</button>
+</div>
+
+@code {
+    public User User { get; set; } = new User();
+
+    public void OnValidSubmit()
+    {
+    }
+
+    public void OnChangeModelClicked()
+    {
+        User = new User();
+    }
+}
