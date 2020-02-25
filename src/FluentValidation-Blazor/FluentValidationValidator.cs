@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FluentValidation
 {
-    public class FluentValidationValidator : ComponentBase
+    public class FluentValidationValidator : ComponentBase, IDisposable
     {
         [CascadingParameter]
         private EditContext _editContext { get; set; }
@@ -75,6 +75,15 @@ namespace FluentValidation
                 _validationMessageStore.Add(fieldIdentifier, error.ErrorMessage);
             }
             _editContext.NotifyValidationStateChanged();
+        }
+
+        public void Dispose()
+        {
+            if (_editContext != null)
+            {
+                _editContext.OnValidationRequested -= _onValidationRequested;
+                _editContext.OnFieldChanged -= _onFieldChanged;
+            }
         }
     }
 }
