@@ -16,6 +16,15 @@ namespace FluentValidation
         
         [Inject]
         private ValidatorLocator _validatorLocator { get; set; }
+
+        private EventHandler<ValidationRequestedEventArgs> _onValidationRequested;
+        private EventHandler<FieldChangedEventArgs> _onFieldChanged;
+
+        public FluentValidationValidator()
+        {
+            _onValidationRequested = (s, a) => Validate();
+            _onFieldChanged = (s, a) => Validate();
+        }
         
         public override async Task SetParametersAsync(ParameterView parameters)
         {
@@ -26,19 +35,21 @@ namespace FluentValidation
             if (_editContext == null)
                 throw new NullReferenceException($"{nameof(FluentValidationValidator)} must be placed within an {nameof(EditForm)}");
 
-            if (_editContext != previousEditContext)  EditContextChanged();
+            if (_editContext != previousEditContext) EditContextChanged(previousEditContext);
         }
 
-        private void EditContextChanged()
+        private void EditContextChanged(EditContext previousEditContext)
         {
             _validationMessageStore = new ValidationMessageStore(_editContext);
-            HookUpEditContextEvents();
-        }
+            
+            if(previousEditContext != null)
+            {
+                previousEditContext.OnValidationRequested -= _onValidationRequested;
+                previousEditContext.OnFieldChanged -= _onFieldChanged;
+            }
 
-        private void HookUpEditContextEvents()
-        {
-            _editContext.OnValidationRequested += (s,a) => Validate();
-            _editContext.OnFieldChanged += (s, a) => Validate();
+            _editContext.OnValidationRequested += _onValidationRequested;
+            _editContext.OnFieldChanged += _onFieldChanged;
         }
 
         private void Validate()
