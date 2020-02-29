@@ -4,13 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <RootNamespace>FluentValidation_Blazor</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-beta</Version>
-    <Authors>Kevin Ackerman</Authors>
-    <Copyright>MIT</Copyright>
-    <PackageProjectUrl>https://github.com/kevinarthurackerman/FluentValidation.Blazor</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/kevinarthurackerman/FluentValidation.Blazor</RepositoryUrl>
-    <PackageId>BlazorFluentValidation</PackageId>
   </PropertyGroup>
 
 
