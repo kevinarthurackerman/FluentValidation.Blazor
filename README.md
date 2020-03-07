@@ -3,7 +3,12 @@
 Add FluentValidation to your Blazor forms
 
 ### Getting Started
-Create and register validators for your form model
+Create validators for your form model
+
+Register validatiors and required services
+```csharp
+services.AddFluentValidation(typeof(Startup));
+```
 
 Tag your form to add validation messages
 ```
