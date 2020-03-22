@@ -34,4 +34,4 @@ Tag your form to add validation messages
 Want to contribute? Great!
 
 ### License
-MIT
+[MIT](https://github.com/kevinarthurackerman/FluentValidation.Blazor/blob/master/LICENSE.md)
