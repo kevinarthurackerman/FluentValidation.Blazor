@@ -1,7 +1,7 @@
-$majorVersion=1
+$majorVersion=2
 $minorVersion=0
-$buildVersion=4
-$postfixVersion="-beta"
+$buildVersion=0
+$postfixVersion=""
 $version="$majorVersion.$minorVersion.$buildVersion$postfixVersion"
 
 $authors="Kevin Ackerman"
